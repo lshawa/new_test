@@ -14,4 +14,4 @@ COPY /dags/dag.py $AIRFLOW_HOME/dags/
 RUN airflow initdb
 EXPOSE 8080
 
-CMD ["bash"]
+CMD ["/usr/bin/supervisord"]

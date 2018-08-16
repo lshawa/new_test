@@ -1,22 +1,17 @@
-From python:3.6.3
+FROM python:3.6.3
 
-export AIRFLOW_HOME=~/airflow
+# supervisord setup                       
+RUN apt-get update && apt-get install -y supervisor                      
 
-RUN pip install apache-airflow
+ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN airflow initdb
-
-aiflow webserver -p 8080
-
-# supervisord setup
-RUN apt-get update && apt-get install -y supervisor
-COPY supervisord.conf /etc/supervsior/conf.d/supervisord.conf
-
-# Airflow setup
+# Airflow setup                       
 ENV AIRFLOW_HOME=/app/airflow
+RUN pip install apache-airflow                       
 
 COPY /dags/dag.py $AIRFLOW_HOME/dags/
 
+RUN airflow initdb
 EXPOSE 8080
 
 CMD ["bash"]

@@ -11,6 +11,8 @@ Dockerizing Airflow Test 2
   # 4 You can package your apps in a container and include the dependencies and configs to make sure it works in different environements
     a - Apache Airflow is an ETL tool that has different dependencies 
     b - Dockerizing airflow can manage those dependencies and run it on different environments
+
+# Steps to Dockerizing Airflow
 ## 1: Make a repo on GitHub (skip if you already have one, like if you forked someone elses repo)
 # (covered elsewhere, but remember the link!)
 
@@ -44,3 +46,14 @@ Dockerizing Airflow Test 2
     # Add the necessary things within your Dockerfile and make sure to include your apache airflow installations within
 
 ## 6: Create a configuration file
+
+## 7: Create a DAG (Directed Acyclic Graph) 
+   # Allows you to visualize the tasks run on a graph
+
+## 8: Build your docker image
+   docker build . -t airflow
+
+## 9: Run your docker image on local host 
+   docker run -d -p 8080:8080 --rm --name airflow_container airflow
+
+  
